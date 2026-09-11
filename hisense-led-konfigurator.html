@@ -165,11 +165,10 @@ table.spec td.h{color:var(--acc);font-size:11px;text-transform:uppercase;letter-
 .distrib .d-head{font-weight:600;font-size:12.5px;color:var(--acc);margin-bottom:6px}
 .distrib p{font-size:11.5px;line-height:1.5;color:var(--tx2);margin-bottom:10px}
 .distrib p b{color:var(--tx)}
-.distrib .d-mail{display:inline-flex;align-items:center;min-height:30px;background:var(--acc);color:var(--on-acc);font-weight:700;text-decoration:none;padding:0 13px;border-radius:7px;font-size:12.5px}
+.distrib .d-mail{display:inline-flex;align-items:center;min-height:30px;background:var(--acc);color:var(--on-acc);font-weight:700;text-decoration:none;padding:0 13px;border-radius:7px;font-size:12.5px;border:0;cursor:pointer;font-family:inherit}
 .distrib .d-mail:hover{background:var(--acc2)}
 .distrib .d-note{font-size:11.5px;color:var(--tx3);margin-top:8px;line-height:1.45}
 .distrib .d-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.distrib .d-mail{border:0;cursor:pointer;font-family:inherit}
 #pdfModal .box{max-width:1180px;height:92vh;display:flex;flex-direction:column;padding:14px 16px}
 #pdfModal h2{margin-bottom:10px}
 #pdfModal .acts{display:flex;gap:8px}
@@ -356,7 +355,7 @@ table.cmp .rm{color:var(--err-tx);cursor:pointer;margin-left:8px;font-weight:700
           <label class="f"><span><span data-i18n="tgtW">Cílová šířka stěny</span> <b id="tgtWLbl">4,0 m</b></span><input autocomplete="off" type="range" id="tgtW" min="0.5" max="20" step="0.1" value="4"></label>
           <label class="f"><span><span data-i18n="tgtH">Cílová výška stěny</span> <b id="tgtHLbl">2,3 m</b></span><input autocomplete="off" type="range" id="tgtH" min="0.4" max="12" step="0.1" value="2.3"></label>
         </div>
-        <label class="f" id="wrapCurve"><span><span data-i18n="curve">Zakřivení (° na spoj)</span> <b id="curveLbl">0°</b></span>
+        <label class="f"><span><span data-i18n="curve">Zakřivení (° na spoj)</span> <b id="curveLbl">0°</b></span>
           <input autocomplete="off" type="range" id="curve" min="-15" max="10" step="2.5" value="0"></label>
         <label class="chk" id="wrapCorner"><input autocomplete="off" type="checkbox" id="okCorner"> <span data-i18n="corner">Rohová instalace 90° (miter cut)</span></label>
         <div class="hint" id="curveHint"></div>
@@ -954,7 +953,6 @@ const LOGOS = {
 };
 // Hisense LED catalogue — current (non End-of-Life) models only.
 // Source: https://www.hisense-b2b.com/en/led-solutions  (specs from each product's Specifications/Technical tab)
-const IMG = 'https://res.cloudinary.com/dbihouiij/image/upload/c_scale,dpr_auto,f_auto,w_600/v1/SiteImages/';
 const U = 'https://www.hisense-b2b.com/en/';
 
 const CATALOG = [
@@ -1938,8 +1936,7 @@ const T = {
     hView: 'Sledovací vzdálenost', dMin: 'Minimální (1:1)', dOpt: 'Doporučená', dRet: 'Plné rozlišení (1′)',
     hInst: 'Instalace', svc: 'Servisní přístup', svcFront: 'Zepředu — lze na plnou stěnu', svcBoth: 'Zepředu i zezadu', svcRear: 'Zdroje zezadu — nutný prostor za stěnou', loadM: 'Zatížení stěny', curveRow: 'Zakřivení', chord: 'Tětiva × vyklenutí', edgeTop: 'Horní hrana', edgeBot: 'Spodní hrana',
     hPanel: 'Panel', refresh: 'Refresh', contrast: 'Kontrast', view: 'Pozorovací úhel', bit: 'Barevná hloubka', ip: 'Krytí', mat: 'Materiál', life: 'Životnost', gamut: 'Gamut', note: 'Poznámka', inferred: 'Kód modelu odvozen z řady (datasheet pro tuto rozteč není publikován).',
-    tech: 'Technické podklady', drawings: 'Výkresy (Technical)', downloads: 'Ke stažení',
-    totals: (n, kg, w, cab, ports, circ) => `<b>${n} obrazovek</b> celkem: <b>${kg} kg</b>, ⌀ <b>${w} W</b>, ${cab} kabinetů, ${ports} portů, ${circ} okruhů`,
+    tech: 'Technické podklady', drawings: 'Výkresy (Technical)', totals: (n, kg, w, cab, ports, circ) => `<b>${n} obrazovek</b> celkem: <b>${kg} kg</b>, ⌀ <b>${w} W</b>, ${cab} kabinetů, ${ports} portů, ${circ} okruhů`,
     mTooWide: (a, b) => `Stěna je široká ${a} m, ale zvolená plocha měří jen ${b} m. Zmenšete sestavu nebo prostor.`,
     mTooHigh: (a, b) => `Sestava sahá do ${a} m, strop je v ${b} m.`,
     mOffset: 'Sestava přesahuje okraj stěny — snižte posun do strany.',
@@ -1962,8 +1959,7 @@ const T = {
     dSpeaker: 'reproduktor', activeArea: 'Aktivní plocha LED', speakerBar: 'pod ní soundbar',
     dPlan: 'PŮDORYS / PLAN — sledovací vzdálenosti', dLed: 'LED stěna', dMin: 'min', dOpt: 'dopor.', dData: 'TECHNICKÁ DATA', dFixed: 'pevný formát', dCabs: 'kabinetů', dCurved: 'zakřiveno', dSvc: 'servisní prostor',
     dResTot: 'Rozlišení celkem', dPxTot: 'Pixelů celkem', dArea: 'Aktivní plocha', dAspect: 'Poměr stran', dDiag: 'Úhlopříčka', dKg: 'Hmotnost', dLoad: 'Zatížení stěny', dW: 'Příkon ⌀ / max', dNits: 'Jas (typ.)', dPorts: 'Datové porty', dCirc: 'Okruhy 16 A', dIP: 'Krytí', dSvcRow: 'Servis', dBot: 'Spodní hrana', dTop: 'Horní hrana', dAxis: 'Osa obrazu', above: 'nad podlahou',
-    xTitle: 'sestava LED', xVis: 'Vizualizace', xDraw: 'Výkres', xSpec: 'Specifikace', xTotals: 'Souhrn všech obrazovek', xRoom: 'Prostor', xGen: 'Vygenerováno', xSrc: 'Zdroj specifikací',
-    toolMove: 'Posouvat', toolMeasure: 'Měřit',
+    xSpec: 'Specifikace', xTotals: 'Souhrn všech obrazovek', toolMove: 'Posouvat', toolMeasure: 'Měřit',
     distLabel: 'Vzdálenost', distFull: 'plné rozlišení', distGood: 'doporučená vzdálenost',
     distEdge: 'rastr může být patrný', distClose: 'rastr viditelný', distCloseMon: d => `rastr viditelný · na monitoru od ${d} m`, distBehind: 'za rovinou stěny',
     dTitle: 'Konfigurátor ASBIS CZ',
@@ -1978,7 +1974,7 @@ const T = {
     inqRoom: 'Prostor', inqRegion: 'Region', inqBuild: 'Sestava', inqFixedUnit: 'all-in-one jednotka', inqCabs: 'kabinetů', inqPlace: 'Umístění', inqBottom: 'spodní hrana', inqCurve: 'oblouk', inqCorner: 'rohová instalace',
     inqPower: 'Příkon ⌀ / max', inqTotal: 'Celkem', inqLink: 'Odkaz na konfiguraci (otevře stejnou sestavu)', inqSign: 'Prosím o nabídku a termín dodání.\n\nS pozdravem',
     inqOpened: 'Otevírám e-mail · text poptávky je i ve schránce',
-    pdfTitle: 'Návrh LED sestavy', pdfCover: 'Vizualizace prostoru', pdfDrawingPage: 'Technický výkres',
+    pdfTitle: 'Návrh LED sestavy', pdfDrawingPage: 'Technický výkres',
     pdfSpecPage: 'Specifikace', pdfPage: (a, b) => `Strana ${a} / ${b}`,
     pdfDistrib: 'ASBIS CZ, spol. s r.o. — autorizovaný distributor Hisense Commercial Displays. Nejsme výrobce ani systémový integrátor.',
     pdfContact: 'Poptávky a objednávky: vad@asbis.cz',
@@ -1988,7 +1984,7 @@ const T = {
     pdfDocs: 'Podklady výrobce',
     btnWizard: 'Průvodce', wizTitle: 'Průvodce výběrem',
     wizHint: 'Popište prostor a diváky. Katalog se přepočítává průběžně — posuňte vzdálenost diváka a pořadí se změní hned.',
-    wizRun: 'Navrhnout řešení', wizResults: 'Doporučené varianty', wizBest: 'nejlepší shoda', wizApply: 'Použít',
+    wizResults: 'Doporučené varianty', wizBest: 'nejlepší shoda', wizApply: 'Použít',
     wizApplied: 'Varianta nastavena', wizNone: 'Žádná varianta nesplňuje zadání. Zkuste povolit servis zezadu, jiný typ montáže nebo jiný region.',
     wizGSpace: 'Prostor a diváci', wizGInstall: 'Instalace a priority',
     wizQContent: 'Co se bude zobrazovat', wizCVideo: 'Video, grafika, prezentace', wizCMixed: 'Smíšený obsah', wizCText: 'Drobný text, tabulky, dispečink',
@@ -2043,8 +2039,7 @@ const T = {
     hView: 'Viewing distance', dMin: 'Minimum (1:1)', dOpt: 'Recommended', dRet: 'Full resolution (1′)',
     hInst: 'Installation', svc: 'Service access', svcFront: 'Front — can mount flat on a wall', svcBoth: 'Front and rear', svcRear: 'PSU from rear — clearance behind wall required', loadM: 'Wall load', curveRow: 'Curve', chord: 'Chord × sag', edgeTop: 'Top edge', edgeBot: 'Bottom edge',
     hPanel: 'Panel', refresh: 'Refresh', contrast: 'Contrast', view: 'Viewing angle', bit: 'Bit depth', ip: 'IP rating', mat: 'Material', life: 'Lifetime', gamut: 'Gamut', note: 'Note', inferred: 'Model code inferred from the series (no datasheet is published for this pitch).',
-    tech: 'Technical documents', drawings: 'Drawings (Technical)', downloads: 'Downloads',
-    totals: (n, kg, w, cab, ports, circ) => `<b>${n} screens</b> total: <b>${kg} kg</b>, avg <b>${w} W</b>, ${cab} cabinets, ${ports} ports, ${circ} circuits`,
+    tech: 'Technical documents', drawings: 'Drawings (Technical)', totals: (n, kg, w, cab, ports, circ) => `<b>${n} screens</b> total: <b>${kg} kg</b>, avg <b>${w} W</b>, ${cab} cabinets, ${ports} ports, ${circ} circuits`,
     mTooWide: (a, b) => `Wall is ${a} m wide but the chosen surface is only ${b} m. Reduce the build or enlarge the space.`,
     mTooHigh: (a, b) => `Build reaches ${a} m, ceiling is at ${b} m.`,
     mOffset: 'Build runs past the wall edge — reduce the side offset.',
@@ -2067,8 +2062,7 @@ const T = {
     dSpeaker: 'speaker', activeArea: 'Active LED area', speakerBar: 'soundbar below',
     dPlan: 'PLAN — viewing distances', dLed: 'LED wall', dMin: 'min', dOpt: 'rec.', dData: 'TECHNICAL DATA', dFixed: 'fixed format', dCabs: 'cabinets', dCurved: 'curved', dSvc: 'service clearance',
     dResTot: 'Total resolution', dPxTot: 'Total pixels', dArea: 'Active area', dAspect: 'Aspect ratio', dDiag: 'Diagonal', dKg: 'Weight', dLoad: 'Wall load', dW: 'Power avg / max', dNits: 'Brightness (typ.)', dPorts: 'Data ports', dCirc: '16 A circuits', dIP: 'IP rating', dSvcRow: 'Service', dBot: 'Bottom edge', dTop: 'Top edge', dAxis: 'Image axis', above: 'above floor',
-    xTitle: 'LED build', xVis: 'Visualisation', xDraw: 'Drawing', xSpec: 'Specification', xTotals: 'Summary of all screens', xRoom: 'Space', xGen: 'Generated', xSrc: 'Specification source',
-    toolMove: 'Move', toolMeasure: 'Measure',
+    xSpec: 'Specification', xTotals: 'Summary of all screens', toolMove: 'Move', toolMeasure: 'Measure',
     distLabel: 'Distance', distFull: 'full resolution', distGood: 'recommended distance',
     distEdge: 'grid may show', distClose: 'grid visible', distCloseMon: d => `grid visible · on this monitor from ${d} m`, distBehind: 'behind the screen plane',
     dTitle: 'ASBIS CZ configurator',
@@ -2083,7 +2077,7 @@ const T = {
     inqRoom: 'Space', inqRegion: 'Region', inqBuild: 'Build', inqFixedUnit: 'all-in-one unit', inqCabs: 'cabinets', inqPlace: 'Placement', inqBottom: 'bottom edge', inqCurve: 'curve', inqCorner: 'corner install',
     inqPower: 'Power avg / max', inqTotal: 'Total', inqLink: 'Configuration link (opens the same build)', inqSign: 'Please send a quote and lead time.\n\nKind regards',
     inqOpened: 'Opening e-mail · the inquiry text is on the clipboard too',
-    pdfTitle: 'LED build proposal', pdfCover: 'Space visualisation', pdfDrawingPage: 'Technical drawing',
+    pdfTitle: 'LED build proposal', pdfDrawingPage: 'Technical drawing',
     pdfSpecPage: 'Specification', pdfPage: (a, b) => `Page ${a} / ${b}`,
     pdfDistrib: 'ASBIS CZ, spol. s r.o. — authorised distributor of Hisense Commercial Displays. We are not the manufacturer nor a systems integrator.',
     pdfContact: 'Enquiries and orders: vad@asbis.cz',
@@ -2093,7 +2087,7 @@ const T = {
     pdfDocs: 'Manufacturer documents',
     btnWizard: 'Wizard', wizTitle: 'Selection wizard',
     wizHint: 'Describe the space and the audience. The catalogue is re-scored as you go — move the viewer distance and the ranking updates immediately.',
-    wizRun: 'Propose a solution', wizResults: 'Recommended variants', wizBest: 'best match', wizApply: 'Apply',
+    wizResults: 'Recommended variants', wizBest: 'best match', wizApply: 'Apply',
     wizApplied: 'Variant applied', wizNone: 'No variant matches. Try allowing rear access, another mounting type or another region.',
     wizGSpace: 'Space and audience', wizGInstall: 'Installation and priorities',
     wizQContent: 'What will be shown', wizCVideo: 'Video, graphics, presentations', wizCMixed: 'Mixed content', wizCText: 'Small text, tables, control room',
